@@ -193,7 +193,7 @@ public class ResponseEditorPanel extends JPanel implements Disposable {
         }
       }
     });
-    toolbar.setLayoutPolicy(ActionToolbar.NOWRAP_LAYOUT_POLICY);
+//    toolbar.setLayoutPolicy(ActionToolbar.NOWRAP_LAYOUT_POLICY);
     toolbar.setTargetComponent(editorEx.getComponent());
     toolbar.getComponent().setBorder(JBUI.Borders.empty());
     return toolbar;

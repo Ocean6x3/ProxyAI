@@ -6,6 +6,8 @@ import javax.swing.Icon;
 
 public final class Icons {
 
+  public static final Icon CJHX =
+          IconLoader.getIcon("/icons/cjhx.svg", Icons.class);
   public static final Icon Default = IconLoader.getIcon("/icons/codegpt.svg", Icons.class);
   public static final Icon DefaultSmall =
       IconLoader.getIcon("/icons/codegpt-small.svg", Icons.class);

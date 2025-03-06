@@ -75,6 +75,8 @@
         <applicationService serviceImplementation="ee.carlrobert.codegpt.settings.advanced.AdvancedSettings"/>
         <applicationService serviceImplementation="ee.carlrobert.codegpt.conversations.ConversationsState"/>
         <applicationService serviceImplementation="ee.carlrobert.codegpt.codecompletions.psi.CompletionContextService"/>
+        <applicationService serviceImplementation="ee.carlrobert.codegpt.settings.CustomOpenAISettings"/>
+
         <inline.completion.provider
           id="CodeGPTInlineCompletionProvider"
           implementation="ee.carlrobert.codegpt.codecompletions.DebouncedCodeCompletionProvider"/>
@@ -278,6 +280,32 @@
 
             <override-text place="MainMenu"/>
             <override-text place="popup" use-text-of-place="MainMenu"/>
+        </action>
+
+        <action id="GenerateMethodByComment"
+                class="ee.carlrobert.codegpt.GenerateMethodByCommentAction"
+                text="AI生成代码"
+                description="根据备注生成代码"
+                icon="ee.carlrobert.codegpt.Icons.CJHX">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+<!--            <keyboard-shortcut  keymap="$default"  first-keystroke="alt+space" replace-all="true"/>-->
+            <keyboard-shortcut keymap="$default" first-keystroke="alt SPACE" replace-all="true"/>
+        </action>
+        <action id="GenerateMethodByComment2"
+                class="ee.carlrobert.codegpt.GenerateMethodByCommentAction"
+                text="AI生成方法"
+                description="根据备注生成方法"
+                icon="ee.carlrobert.codegpt.Icons.CJHX">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="alt a" replace-all="true"/>
+        </action>
+        <action id="GenerateMethodByComment3"
+                class="ee.carlrobert.codegpt.GenerateMethodByCommentAction"
+                text="AI生成方法"
+                description="根据备注生成方法"
+                icon="ee.carlrobert.codegpt.Icons.CJHX">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+            <keyboard-shortcut  keymap="$default"  first-keystroke="alt NET" replace-all="true"/>
         </action>
 
         <group id="codegpt.statusBarPopup">

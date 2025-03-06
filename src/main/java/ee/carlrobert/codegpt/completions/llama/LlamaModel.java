@@ -241,7 +241,7 @@ public enum LlamaModel {
       AI applications for software developers. Codestral is trained on a diverse dataset of 80+ \
       programming languages. Codestral saves developers time and effort: it can complete coding \
       functions, write tests, and complete any partial code using a fill-in-the-middle mechanism. \
-      Interacting with Codestral will help level up the developerâ€™s coding game and reduce the \
+      Interacting with Codestral will help level up the developer¡¯s coding game and reduce the \
       risk of errors and bugs.""",
       PromptTemplate.MIXTRAL_INSTRUCT,
       InfillPromptTemplate.CODESTRAL,
@@ -302,7 +302,7 @@ public enum LlamaModel {
   }
 
   public static String getDownloadedMarker(boolean downloaded) {
-    return downloaded ? "âœ“" : "\u2001";
+    return downloaded ? "?" : "\u2001";
   }
 
   public static @NotNull Path getLlamaModelsPath() {
@@ -374,7 +374,7 @@ public enum LlamaModel {
   }
 
   public record ModelSize(int size, boolean downloaded) implements Comparable<ModelSize> {
-    // Sort by size, but downloaded comes first: [  7B, âœ“ 13B,   13B,   34B]
+    // Sort by size, but downloaded comes first: [  7B, ? 13B,   13B,   34B]
     private static final Comparator<ModelSize> sizeDownloadedFirst = Comparator
             .comparing(ModelSize::size)
             .thenComparing(Comparator.comparing(ModelSize::downloaded).reversed());
