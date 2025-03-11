@@ -57,19 +57,19 @@ public class GenerateMethodByCommentAction extends AnAction {
                 RequestBody body = RequestBody.create(requestBody, MediaType.parse("application/json; charset=utf-8"));
                 OkHttpClient client = new OkHttpClient();
 
-                Request request = new Request.Builder()
+                /*Request request = new Request.Builder()
                         .url("http://10.191.0.140/v1/chat-messages") // 确保 URL 正确
                         .post(body)
-                        .addHeader("Authorization", "Bearer app-8KmeEvzpPel5GIudaf2eoHjW") // 确保 API Key 正确
+                        .addHeader("Authorization", "Bearer app-ySzj9mAfN5aoEuHc2nlnmgq6") // 确保 API Key 正确
                         .addHeader("Content-Type", "application/json")
-                        .build();
+                        .build();*/
 
-                /*Request request = new Request.Builder()
+                Request request = new Request.Builder()
                         .url("http://localhost/v1/chat-messages") // 确保 URL 正确
                         .post(body)
                         .addHeader("Authorization", "Bearer app-Jp0N9k9Q6D9clwuNzxAa8Ehi") // 确保 API Key 正确
                         .addHeader("Content-Type", "application/json")
-                        .build();*/
+                        .build();
 
                 try (Response response = client.newCall(request).execute()) {
                     if (!response.isSuccessful()) {
