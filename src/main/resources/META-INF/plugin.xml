@@ -282,6 +282,24 @@
             <override-text place="popup" use-text-of-place="MainMenu"/>
         </action>
 
+        <action id="GenerateMethodByComment"
+                class="ee.carlrobert.codegpt.cjhx.GenerateMethodByCommentAction"
+                text="AI生成方法"
+                description="根据备注生成方法"
+                icon="ee.carlrobert.codegpt.Icons.CJHX">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+<!--            <keyboard-shortcut  keymap="$default"  first-keystroke="alt+space" replace-all="true"/>-->
+            <keyboard-shortcut keymap="$default" first-keystroke="alt s" replace-all="true"/>
+        </action>
+        <action id="GenerateMethodByComment2"
+                class="ee.carlrobert.codegpt.cjhx.GenerateCodeByCommentAction"
+                text="AI生成代码"
+                description="根据备注生成代码"
+                icon="ee.carlrobert.codegpt.Icons.CJHX">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="alt a" replace-all="true"/>
+        </action>
+
         <group id="codegpt.statusBarPopup">
             <reference id="codegpt.openSettings" />
             <separator/>
