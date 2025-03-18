@@ -76,9 +76,9 @@ public class AskQuestionAction extends BaseEditorAction {
 
       return FormBuilder.createFormBuilder()
           .addComponent(UI.PanelFactory.panel(userPromptTextArea)
-              .withLabel("Prefix:")
+              .withLabel("前缀:")
               .moveLabelOnTop()
-              .withComment("Example: Find bugs in the following code")
+              .withComment("例: 在以下代码中查找bug")
               .createPanel())
           .getPanel();
     }

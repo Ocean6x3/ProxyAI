@@ -53,20 +53,55 @@ class ChatToolWindowLandingPanel(onAction: (LandingPanelAction, Point) -> Unit) 
     }
 
     private fun getWelcomeMessage(): String {
-        return """
+        /*return """
             <html>
             <p style="margin-top: 4px; margin-bottom: 4px;">
             Hi <strong>${GeneralSettings.getCurrentState().displayName}</strong>, I'm ProxyAI! You can ask me anything, but most people request help with their code. Here are a few examples of what you can ask me:
+            </p>
+            </html>
+        """.trimIndent()*/
+
+        return """
+            <html>
+            <p style="margin-top: 4px; margin-bottom: 4px;">
+            嗨 <strong>${GeneralSettings.getCurrentState().displayName}</strong>, 我是 创金ProxyAI！
+            </p>
+            <p style="margin-top: 4px; margin-bottom: 4px;">
+            你可以问我任何问题，但大多数人都要求我帮助他们编写代码。下面是一些你可以问我的问题：
             </p>
             </html>
         """.trimIndent()
     }
 
     private fun getCautionMessage(): String {
-        return """
+        /*return """
             <html>
             <p style="margin-top: 4px; margin-bottom: 4px;">
             I can sometimes make mistakes, so please double-check anything critical.
+            </p>
+            </html>
+        """.trimIndent()*/
+        return """
+            <html>
+            <p style="margin-top: 4px; margin-bottom: 4px;">
+            扩展内容：
+            </p>
+            <p style="margin-top: 4px; margin-bottom: 4px;color: #589DF6;">
+            　　1. 读取创金知识库，例如：API平台接口信息、生成API平台接口代码等
+            </p>
+            <p style="margin-top: 4px; margin-bottom: 4px;color: #589DF6;">
+            　　2. 根据表名生成CRUD，例如：根据数据库及表名生成 基础SQL（增删改查、分页）、基础java代码
+            </p>
+            <p style="margin-top: 1px; margin-bottom: 1px;">
+            </p>
+            <p style="margin-top: 4px; margin-bottom: 4px;">
+            获取最新秘钥：<a href="http://10.190.220.33:3000/api/getCodeGptKeyAndUrl" style="text-decoration: underline">http://10.190.220.33:3000/api/getCodeGptKeyAndUrl（单击）</a>
+            </p>
+            <p style="margin-top: 4px; margin-bottom: 4px;">
+            获取最新版本：<a href="file:\\10.201.210.200\temp\ProxyAI_ReleaseVersion" style="text-decoration: underline">\\10.201.210.200\temp\ProxyAI_ReleaseVersion（单击）</a>
+            </p>
+            <p style="margin-top: 4px; margin-bottom: 4px;">
+            我有时会犯错误，所以请仔细检查任何重要的事情。
             </p>
             </html>
         """.trimIndent()
@@ -78,7 +113,23 @@ enum class LandingPanelAction(
     val userMessage: String,
     val prompt: String
 ) {
+
     FIND_BUGS(
+        "Find Bugs",
+        "查找代码中的BUG",
+        ChatActionsState.DEFAULT_FIND_BUGS_PROMPT
+    ),
+    WRITE_TESTS(
+        "Write Tests",
+        "为代码编写单元测试",
+        ChatActionsState.DEFAULT_WRITE_TESTS_PROMPT
+    ),
+    EXPLAIN(
+        "Explain",
+        "解释选定的代码",
+        ChatActionsState.DEFAULT_EXPLAIN_PROMPT
+    )
+    /*FIND_BUGS(
         "Find Bugs",
         "Find bugs in this code",
         ChatActionsState.DEFAULT_FIND_BUGS_PROMPT
@@ -92,6 +143,6 @@ enum class LandingPanelAction(
         "Explain",
         "Explain the selected code",
         ChatActionsState.DEFAULT_EXPLAIN_PROMPT
-    )
+    )*/
 }
 

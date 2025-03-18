@@ -80,7 +80,7 @@
         <inline.completion.provider
           id="CodeGPTInlineCompletionProvider"
           implementation="ee.carlrobert.codegpt.codecompletions.DebouncedCodeCompletionProvider"/>
-        <toolWindow id="ProxyAI" icon="ee.carlrobert.codegpt.Icons.CJHX" anchor="right"
+        <toolWindow id="ProxyAI" icon="ee.carlrobert.codegpt.Icons.DefaultSmall" anchor="right"
             factoryClass="ee.carlrobert.codegpt.toolwindow.ProjectToolWindowFactory"/>
         <notificationGroup id="proxyai.notification.group" displayType="BALLOON" key="notification.group.name"/>
         <notificationGroup id="proxyai.notification.sticky.group" displayType="STICKY_BALLOON" key="notification.group.sticky.name"/>
@@ -139,20 +139,20 @@
                 <action
                   id="CodeGPT.NewChat"
                   class="ee.carlrobert.codegpt.actions.editor.OpenNewChatAction"
-                  text="新聊天"
+                  text="New Chat"
                   description="Creates a new chat session">
                     <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt shift N" replace-all="true"/>
                 </action>
                 <action
                   id="CodeGPT.ContextMenuEditCodeAction"
-                  text="编辑代码"
+                  text="Edit Code"
                   description="Edit code from editor's context menu"
                   class="ee.carlrobert.codegpt.actions.editor.EditCodeContextMenuAction">
                     <keyboard-shortcut keymap="$default" first-keystroke="ctrl shift K" replace-all="true"/>
                 </action>
                 <action
                   id="CodeGPT.AskQuestion"
-                  text="询问问题"
+                  text="Ask Question"
                   class="ee.carlrobert.codegpt.actions.editor.AskQuestionAction">
                     <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt shift Q" replace-all="true"/>
                 </action>
@@ -218,7 +218,7 @@
         <action
           id="CodeGPT.AddSelectionToContext"
           class="ee.carlrobert.codegpt.actions.editor.AddSelectionToContextAction"
-          text="在提示词中包含选择"
+          text="Include Selection in Prompt"
           description="Adds the selected text to the ProxyAI context">
             <keyboard-shortcut keymap="$default" first-keystroke="ctrl shift I" replace-all="true"/>
 

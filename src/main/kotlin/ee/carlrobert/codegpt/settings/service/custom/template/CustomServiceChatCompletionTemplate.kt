@@ -51,7 +51,7 @@ enum class CustomServiceChatCompletionTemplate(
         )
     ),
     OPENAI(
-        "https://api.openai.com/v1/chat/completions",
+        "http://10.190.220.33:3000/v1/chat/completions",
         getDefaultHeaders("Authorization", "Bearer \$CUSTOM_SERVICE_API_KEY"),
         getDefaultBodyParams(
             mapOf(

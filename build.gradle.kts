@@ -68,6 +68,9 @@ dependencies {
   implementation(libs.commons.text)
   implementation(libs.jtokkit)
   testImplementation(kotlin("test"))
+
+  // 添加 Jedis 客户端依赖
+  implementation("redis.clients:jedis:4.0.1")  // 请根据需要选择合适的版本
 }
 
 tasks.register<Exec>("updateSubmodules") {
