@@ -90,7 +90,7 @@ class ChatToolWindowLandingPanel(onAction: (LandingPanelAction, Point) -> Unit) 
             　　1. 读取创金知识库，例如：API平台接口信息、生成API平台接口代码等
             </p>
             <p style="margin-top: 4px; margin-bottom: 4px;color: #589DF6;">
-            　　2. 根据表名生成CRUD，例如：根据数据库及表名生成 基础SQL（增删改查、分页）、基础java代码
+            　　2. 根据表名生成CRUD，例如：根据数据库及表名生成 基础SQL、java代码（增删改查、分页）
             </p>
             <p style="margin-top: 1px; margin-bottom: 1px;">
             </p>
