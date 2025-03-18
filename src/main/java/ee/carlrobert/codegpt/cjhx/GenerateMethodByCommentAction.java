@@ -18,15 +18,20 @@ import com.intellij.psi.util.PsiUtilBase;
 import ee.carlrobert.codegpt.cjhx.utils.RedisUtil;
 import okhttp3.*;
 import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class GenerateMethodByCommentAction extends AnAction {
+    private static final Logger log = LoggerFactory.getLogger(GenerateMethodByCommentAction.class);
+
     @Override
     public void actionPerformed(@NotNull AnActionEvent e) {
         Project project = e.getProject();
@@ -56,23 +61,43 @@ public class GenerateMethodByCommentAction extends AnAction {
 
         /* prod */
         /*String apiUrl = "http://10.191.0.140/v1/chat-messages";
+        http://10.190.220.33:3000/v1/chat/completions
         String apiKey = "app-ySzj9mAfN5aoEuHc2nlnmgq6";*/
         String keyAndUrl = RedisUtil.getKeyAndUrl();
         String apiUrl = keyAndUrl.split(",")[0];
         String apiKey = keyAndUrl.split(",")[1];
+        /*直接请求Dify*/
         String requestBody = "{"
                 + "\"inputs\": {},"
                 + "\"query\": \"" + query + "\","
                 + "\"response_mode\": \"streaming\","
                 + "\"user\": \"apiuser\""
                 + "}";
+        /* 通过代理请求Dify */
+        /*String requestBody = "{\n" +
+                "  \"model\": \"gpt-4\",\n" +
+                "  \"messages\": [\n" +
+                "    {\n" +
+                "      \"role\": \"user\",\n" +
+                "      \"content\": \""+query+"\"\n" +
+                "    }\n" +
+                "  ],\n" +
+                "  \"temperature\": 0.1,\n" +
+                "  \"stream\": true,\n" +
+                "  \"max_tokens\": 9999\n" +
+                "}";*/
         // 异步执行网络请求和流式响应处理
         CompletableFuture.runAsync(() -> {
             try {
                 // 调用 Dify API 并逐步处理流式响应
 
                 RequestBody body = RequestBody.create(requestBody, MediaType.parse("application/json; charset=utf-8"));
-                OkHttpClient client = new OkHttpClient();
+                OkHttpClient client = new OkHttpClient.Builder()
+                        .connectTimeout(60, TimeUnit.SECONDS)  // 设置连接超时时间为60秒
+                        .readTimeout(120, TimeUnit.SECONDS)    // 设置读取超时时间为60秒
+                        .writeTimeout(120, TimeUnit.SECONDS)   // 设置写入超时时间为60秒
+                        .build();
+                log.info("_____________apiUrlAndApiKey_________"+apiUrl+"_____________________________"+apiKey);
 
                 Request request = new Request.Builder()
                         .url(apiUrl) // 确保 URL 正确
@@ -80,7 +105,6 @@ public class GenerateMethodByCommentAction extends AnAction {
                         .addHeader("Authorization", "Bearer "+apiKey) // 确保 API Key 正确
                         .addHeader("Content-Type", "application/json")
                         .build();
-
                 try (Response response = client.newCall(request).execute()) {
                     if (!response.isSuccessful()) {
                         throw new IOException("Unexpected code " + response.code());

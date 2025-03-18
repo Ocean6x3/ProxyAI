@@ -27,7 +27,7 @@ enum class CustomServiceCodeCompletionTemplate(
         getDefaultBodyParams(mapOf("model" to "accounts/fireworks/models/qwen2p5-coder-32b-instruct"))
     ),
     OPENAI(
-        "https://api.openai.com/v1/completions",
+        "http://10.190.220.33:3000/v1/chat/completions",
         getDefaultHeaders("Authorization", "Bearer \$CUSTOM_SERVICE_API_KEY"),
         mutableMapOf(
             "stream" to true,

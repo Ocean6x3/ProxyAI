@@ -25,6 +25,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class GenerateCodeByCommentAction extends AnAction {
@@ -67,7 +68,11 @@ public class GenerateCodeByCommentAction extends AnAction {
                 // 调用 Dify API 并逐步处理流式响应
 
                 RequestBody body = RequestBody.create(requestBody, MediaType.parse("application/json; charset=utf-8"));
-                OkHttpClient client = new OkHttpClient();
+                OkHttpClient client = new OkHttpClient.Builder()
+                        .connectTimeout(60, TimeUnit.SECONDS)  // 设置连接超时时间为60秒
+                        .readTimeout(120, TimeUnit.SECONDS)    // 设置读取超时时间为60秒
+                        .writeTimeout(120, TimeUnit.SECONDS)   // 设置写入超时时间为60秒
+                        .build();
                 Request request = new Request.Builder()
                         .url(apiUrl) // 确保 URL 正确
                         .post(body)

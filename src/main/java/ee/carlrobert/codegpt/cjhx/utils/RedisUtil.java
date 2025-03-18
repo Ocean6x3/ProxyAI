@@ -1,14 +1,19 @@
 package ee.carlrobert.codegpt.cjhx.utils;
 
 import ee.carlrobert.codegpt.util.StringUtil;
+import okhttp3.*;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
+import java.io.IOException;
+
 public class RedisUtil {
-//    static String env = "dev";
-    static String env = "prod";
+    private static final Logger log = LoggerFactory.getLogger(RedisUtil.class);
+    static final Boolean isProd = true;
 
     //static JedisPool jedisPool = null;
     /*static {
@@ -30,19 +35,32 @@ public class RedisUtil {
     }
 */
     public static String getKeyAndUrl() {
+        String apiUrlAndKey = "";
         String apiUrl = "";
         String apiKey = "";
         String redisHost = "localhost";
-        if(!"dev".equals(env)) {
-            redisHost = "10.190.220.33";
-        }
-
-        try (Jedis jedis = new Jedis(redisHost, 6379)) {
-            // 获取 apiUrl 和 apiKey
-            apiUrl = jedis.get("CODE_GPT_DIFY_API_URL");
-            apiKey = jedis.get("CODE_GPT_DIFY_API_KEY");
-        } catch (Exception e) {
-            e.printStackTrace();
+        if(isProd) {
+            RequestBody body = RequestBody.create("", MediaType.parse("application/json; charset=utf-8"));
+            OkHttpClient client = new OkHttpClient();
+            Request request = new Request.Builder()
+                    .url("http://10.190.220.33:3000/api/getCodeGptKeyAndUrl") // 确保 URL 正确
+                    .post(body)
+                    .addHeader("Content-Type", "application/json")
+                    .build();
+            try (Response response = client.newCall(request).execute()) {
+                apiUrlAndKey = response.body().string();
+            } catch (IOException e) {
+                //throw new RuntimeException(e);
+            }
+        }else{
+            try (Jedis jedis = new Jedis(redisHost, 6379)) {
+                // 获取 apiUrl 和 apiKey
+                apiUrl = jedis.get("CODE_GPT_DIFY_API_URL");
+                apiKey = jedis.get("CODE_GPT_DIFY_API_KEY");
+                apiUrlAndKey= apiUrl+","+apiKey;
+            } catch (Exception e) {
+                //e.printStackTrace();
+            }
         }
 
     /*
@@ -66,6 +84,6 @@ public class RedisUtil {
             jedisPool.close();
         }
         */
-        return apiUrl+","+apiKey;
+        return apiUrlAndKey;
     }
 }
