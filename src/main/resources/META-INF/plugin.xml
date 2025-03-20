@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>ee.carlrobert.chatgpt</id>
-    <name>Proxy AI</name>
-    <vendor email="carlrobertoh@gmail.com" url="https://carlrobert.ee">Carl-Robert Linnupuu</vendor>
+    <name>CatJCodeAI</name>
+    <vendor email="carlrobertoh@gmail.com" url="https://carlrobert.ee">创金合信</vendor>
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.modules.lang</depends>
     <depends optional="true" config-file="plugin-kotlin.xml">org.jetbrains.kotlin</depends>
@@ -78,7 +78,7 @@
         <inline.completion.provider
           id="CodeGPTInlineCompletionProvider"
           implementation="ee.carlrobert.codegpt.codecompletions.DebouncedCodeCompletionProvider"/>
-        <toolWindow id="ProxyAI" icon="ee.carlrobert.codegpt.Icons.CJHX" anchor="right"
+        <toolWindow id="CatJCodeAI" icon="ee.carlrobert.codegpt.Icons.CJHX" anchor="right"
             factoryClass="ee.carlrobert.codegpt.toolwindow.ProjectToolWindowFactory"/>
         <notificationGroup id="proxyai.notification.group" displayType="BALLOON" key="notification.group.name"/>
         <notificationGroup id="proxyai.notification.sticky.group" displayType="STICKY_BALLOON" key="notification.group.sticky.name"/>
@@ -130,7 +130,7 @@
 
         <group id="CodeGPTEditorPopup">
             <group id="action.editor.group.EditorActionGroup"
-                text="CodeGPT"
+                text="CatJCodeAI"
                 class="com.intellij.openapi.actionSystem.DefaultActionGroup"
                 popup="true"
                 icon="ee.carlrobert.codegpt.Icons.DefaultSmall">
@@ -160,7 +160,7 @@
                   class="com.intellij.openapi.actionSystem.DefaultActionGroup">
                 </group>
             </group>
-            <add-to-group group-id="EditorPopupMenu1" anchor="first"/>
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
             <separator/>
         </group>
         <action id="CodeGPT.TriggerEditorPopup"
@@ -282,7 +282,7 @@
 
         <action id="GenerateMethodByComment"
                 class="ee.carlrobert.codegpt.cjhx.GenerateMethodByCommentAction"
-                text="AI生成方法"
+                text="AI生成方法-根据注释"
                 description="根据备注生成方法"
                 icon="ee.carlrobert.codegpt.Icons.CJHX">
             <add-to-group group-id="EditorPopupMenu" anchor="first"/>
@@ -291,7 +291,7 @@
         </action>
         <action id="GenerateMethodByComment2"
                 class="ee.carlrobert.codegpt.cjhx.GenerateCodeByCommentAction"
-                text="AI生成代码"
+                text="AI生成代码-根据注释"
                 description="根据备注生成代码"
                 icon="ee.carlrobert.codegpt.Icons.CJHX">
             <add-to-group group-id="EditorPopupMenu" anchor="first"/>

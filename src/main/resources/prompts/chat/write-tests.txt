@@ -1,3 +1,4 @@
+使用中文回答：
 Your task is to create concise, effective tests for the given code.
 
 Generate unit tests for the provided code. Focus on:

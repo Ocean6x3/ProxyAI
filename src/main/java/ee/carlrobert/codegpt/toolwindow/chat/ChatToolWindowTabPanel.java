@@ -411,7 +411,7 @@ public class ChatToolWindowTabPanel implements Disposable {
       if (editor == null || !editor.getSelectionModel().hasSelection()) {
         OverlayUtil.showWarningBalloon(
             editor == null ? "Unable to locate a selected editor"
-                : "Please select a target code before proceeding",
+                : "请在使用之前选中目标代码",
             locationOnScreen);
         return Unit.INSTANCE;
       }

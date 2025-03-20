@@ -1,3 +1,4 @@
+使用中文回答：
 Your task is to improve the code's readability, efficiency, and maintainability without changing its functionality. Follow these steps:
 
 1. Analyze the following selected code:

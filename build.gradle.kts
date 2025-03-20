@@ -131,7 +131,7 @@ tasks {
     enabled = true
     dependsOn("updateSubmodules")
     from("src/main/cpp/llama.cpp") {
-      into("ProxyAI/llama.cpp")
+      into("CatJCodeAI/llama.cpp")
     }
   }
 

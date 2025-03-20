@@ -178,7 +178,7 @@ public class OverlayUtil {
     showWarningBalloon(
         EditorUtil.getSelectedEditor(project) == null
             ? "Unable to locate a selected editor"
-            : "Please select a target code before proceeding",
+            : "请在使用之前选中目标代码",
         locationOnScreen);
   }
 

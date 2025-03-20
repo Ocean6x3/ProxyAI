@@ -13,7 +13,7 @@ import java.io.IOException;
 
 public class RedisUtil {
     private static final Logger log = LoggerFactory.getLogger(RedisUtil.class);
-    static final Boolean isProd = true;
+    static final Boolean isProd = false;
 
     //static JedisPool jedisPool = null;
     /*static {

@@ -74,7 +74,7 @@ class PersonasState : BaseState() {
         val DEFAULT_PERSONA_PROMPT = getResourceContent("/prompts/persona/default-persona.txt")
         val DEFAULT_PERSONA = PersonaPromptDetailsState().apply {
             id = 1L
-            name = "CodeGPT Default"
+            name = "CatJCodeAI设置"
             instructions = DEFAULT_PERSONA_PROMPT
         }
     }
@@ -122,31 +122,31 @@ class ChatActionsState : BaseState() {
         prompts.add(ChatActionPromptDetailsState().apply {
             id = 1L
             code = "FIND_BUGS"
-            name = "Find Bugs"
+            name = "查找目标BUG"
             instructions = DEFAULT_FIND_BUGS_PROMPT
         })
         prompts.add(ChatActionPromptDetailsState().apply {
             id = 2L
             code = "WRITE_TESTS"
-            name = "Write Tests"
+            name = "编写目标测试"
             instructions = DEFAULT_WRITE_TESTS_PROMPT
         })
         prompts.add(ChatActionPromptDetailsState().apply {
             id = 3L
             code = "EXPLAIN"
-            name = "Explain"
+            name = "解释目标代码"
             instructions = DEFAULT_EXPLAIN_PROMPT
         })
         prompts.add(ChatActionPromptDetailsState().apply {
             id = 4L
             code = "REFACTOR"
-            name = "Refactor"
+            name = "重构目标代码"
             instructions = DEFAULT_REFACTOR_PROMPT
         })
         prompts.add(ChatActionPromptDetailsState().apply {
             id = 5L
             code = "OPTIMIZE"
-            name = "Optimize"
+            name = "优化目标代码"
             instructions = DEFAULT_OPTIMIZE_PROMPT
         })
 
