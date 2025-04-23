@@ -105,10 +105,10 @@ class PromptsForm {
         val coreActionsFormState = getFormState<CoreActionPromptDetails>(coreActionsNode)
         settings.coreActions.apply {
             editCode = coreActionsFormState[1].toState()
-            fixCompileErrors = coreActionsFormState[2].toState()
-            generateCommitMessage = coreActionsFormState[3].toState()
-            generateNameLookups = coreActionsFormState[4].toState()
-            reviewChanges = coreActionsFormState[5].toState()
+//            fixCompileErrors = coreActionsFormState[2].toState()
+//            generateCommitMessage = coreActionsFormState[3].toState()
+//            generateNameLookups = coreActionsFormState[4].toState()
+//            reviewChanges = coreActionsFormState[5].toState()
         }
         settings.chatActions.prompts = getFormState<ChatActionPromptDetails>(chatActionsNode)
             .map { it.toState() }

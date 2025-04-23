@@ -75,9 +75,11 @@
         <applicationService serviceImplementation="ee.carlrobert.codegpt.settings.advanced.AdvancedSettings"/>
         <applicationService serviceImplementation="ee.carlrobert.codegpt.conversations.ConversationsState"/>
         <applicationService serviceImplementation="ee.carlrobert.codegpt.codecompletions.psi.CompletionContextService"/>
-        <inline.completion.provider
+        <!-- 暂时取消代码预测 -->
+        <!--<inline.completion.provider
           id="CodeGPTInlineCompletionProvider"
-          implementation="ee.carlrobert.codegpt.codecompletions.DebouncedCodeCompletionProvider"/>
+          implementation="ee.carlrobert.codegpt.codecompletions.DebouncedCodeCompletionProvider"/>-->
+
         <toolWindow id="CatJCodeAI" icon="ee.carlrobert.codegpt.Icons.CJHX" anchor="right"
             factoryClass="ee.carlrobert.codegpt.toolwindow.ProjectToolWindowFactory"/>
         <notificationGroup id="proxyai.notification.group" displayType="BALLOON" key="notification.group.name"/>
@@ -90,6 +92,9 @@
     <resource-bundle>messages.codegpt</resource-bundle>
 
     <actions>
+
+        <!-- 代码预测-因为模型能力跟不上，暂时注掉 代码预测、补全功能-->
+        <!--
         <action id="InsertInlineCompletionAction" class="ee.carlrobert.codegpt.codecompletions.CodeCompletionInsertAction" overrides="true">
             <add-to-group group-id="InlineCompletion" anchor="first"/>
             <keyboard-shortcut first-keystroke="TAB" keymap="$default"/>
@@ -127,7 +132,7 @@
           text="Apply next line"
           use-shortcut-of="EditorLineEnd"
           class="ee.carlrobert.codegpt.codecompletions.AcceptNextLineInlayAction"/>
-
+        -->
         <group id="CodeGPTEditorPopup">
             <group id="action.editor.group.EditorActionGroup"
                 text="CatJCodeAI"
@@ -280,6 +285,16 @@
             <override-text place="popup" use-text-of-place="MainMenu"/>
         </action>
 
+        <action id="GenerateSwaggerParamsAction"
+                class="ee.carlrobert.codegpt.cjhx.GenerateSwaggerParamsAction"
+                text="生成Swagger参数"
+                description="生成Swagger参数"
+                icon="ee.carlrobert.codegpt.Icons.CJHX">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+            <!--            <keyboard-shortcut  keymap="$default"  first-keystroke="alt+space" replace-all="true"/>-->
+            <keyboard-shortcut keymap="$default" first-keystroke="alt d" replace-all="true"/>
+        </action>
+
         <action id="GenerateMethodByComment"
                 class="ee.carlrobert.codegpt.cjhx.GenerateMethodByCommentAction"
                 text="AI生成方法-根据注释"
@@ -289,7 +304,8 @@
 <!--            <keyboard-shortcut  keymap="$default"  first-keystroke="alt+space" replace-all="true"/>-->
             <keyboard-shortcut keymap="$default" first-keystroke="alt s" replace-all="true"/>
         </action>
-        <action id="GenerateMethodByComment2"
+
+        <action id="GenerateCodeByCommentAction"
                 class="ee.carlrobert.codegpt.cjhx.GenerateCodeByCommentAction"
                 text="AI生成代码-根据注释"
                 description="根据备注生成代码"
@@ -297,6 +313,7 @@
             <add-to-group group-id="EditorPopupMenu" anchor="first"/>
             <keyboard-shortcut keymap="$default" first-keystroke="alt a" replace-all="true"/>
         </action>
+
 
         <group id="codegpt.statusBarPopup">
             <reference id="codegpt.openSettings" />

@@ -109,10 +109,12 @@ class ChatToolWindowLandingPanel(onAction: (LandingPanelAction, Point) -> Unit) 
             <p style="margin-top: 1px; margin-bottom: 1px;">
             </p>
             <p style="margin-top: 4px; margin-bottom: 4px;">
-            获取最新秘钥：<a href="http://10.190.220.33:3000/api/getCodeGptKeyAndUrl" style="text-decoration: underline">http://10.190.220.33:3000/api/getCodeGptKeyAndUrl（单击）</a>
+            获取最新秘钥：<a href="http://10.190.220.33:3000/chat/getAgentCodeGptKeyAndUrl" style="text-decoration: underline">http://10.190.220.33:3000/api/getCodeGptKeyAndUrl（单击）</a>
             </p>
             <p style="margin-top: 4px; margin-bottom: 4px;">
-            获取最新版本：<a href="file:\\10.201.210.200\temp\CatJCodeAI_ReleaseVersions" style="text-decoration: underline">\\10.201.210.200\temp\CatJCodeAI_ReleaseVersions（单击）</a>
+            获取最新版本：<a href="file:\\10.201.210.202\temp(临时交换 用完即删)\CatJAI勿删\CatJCodeAI_ReleaseVersions" style="text-decoration: underline">\\10.201.210.202\temp(临时交换 用完即删)\CatJAI勿删\CatJCodeAI_ReleaseVersions（单击）</a>
+            <br/>
+            　　　　　　（无法打开请设置IDEA默认浏览器：Settings->Tools->Web Browsers and Preview->Default Browser 为 First listed）
             </p>
             <p style="margin-top: 4px; margin-bottom: 4px;">
             我有时会犯错误，所以请仔细检查任何重要的事情。

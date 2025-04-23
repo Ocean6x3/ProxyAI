@@ -10,10 +10,12 @@ import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 public class RedisUtil {
     private static final Logger log = LoggerFactory.getLogger(RedisUtil.class);
-    static final Boolean isProd = false;
+    static final Boolean isProd = true;
 
     //static JedisPool jedisPool = null;
     /*static {
@@ -39,11 +41,19 @@ public class RedisUtil {
         String apiUrl = "";
         String apiKey = "";
         String redisHost = "localhost";
+        String ip = "";
+        try {
+            InetAddress ipAddress = InetAddress.getLocalHost();
+            ip = ipAddress.getHostAddress();
+            System.out.println("———————————— 本机 IP 地址: " + ipAddress.getHostAddress()+"————————————");
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
         if(isProd) {
-            RequestBody body = RequestBody.create("", MediaType.parse("application/json; charset=utf-8"));
+            RequestBody body = RequestBody.create(ip, MediaType.parse("application/json; charset=utf-8"));
             OkHttpClient client = new OkHttpClient();
             Request request = new Request.Builder()
-                    .url("http://10.190.220.33:3000/api/getCodeGptKeyAndUrl") // 确保 URL 正确
+                    .url("http://10.190.220.33:3000/chat/getDifyCodeGptKeyAndUrl") // 确保 URL 正确
                     .post(body)
                     .addHeader("Content-Type", "application/json")
                     .build();

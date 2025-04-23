@@ -34,7 +34,19 @@ abstract class AbstractEditorPromptPanel(
     private fun createEditor(): Editor {
         return service<EditorFactory>()
             .run {
-                createEditor(createDocument(details.instructions ?: ""))
+                try {
+                    // 预处理字符串，将 "\r\n" 替换为 "\n"
+                    val processedInstructions = (details.instructions ?: "").replace("\r\n", "\n")
+                    val document = createDocument(processedInstructions?: "");
+                    createEditor(document)
+                } catch (e: AssertionError) {
+                    // 捕获 AssertionError 并处理
+                    println("捕获到 AssertionError: ${e.message}")
+                    // 可以在这里记录日志或其他处理逻辑
+                    // 如果需要，可以返回一个默认的 Editor 或抛出自定义异常
+                    // 例如，返回一个空的 Editor
+                    createEditor(createDocument(""))
+                }
             }
             .apply {
                 settings.additionalLinesCount = 0
