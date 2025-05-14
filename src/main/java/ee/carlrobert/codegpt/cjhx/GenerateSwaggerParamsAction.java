@@ -38,6 +38,12 @@ public class GenerateSwaggerParamsAction extends AnAction {
         PsiElement element = psiFile.findElementAt(editor.getCaretModel().getOffset());
         PsiMethod containingMethod = PsiTreeUtil.getParentOfType(element, PsiMethod.class);
 
+        List<String> excludedFields = List.of(
+                "sysToken", "serialVersionUID", "rows", "currentIndex",
+                "orderbys", "orderBy", "ascOrDesc", "orderbyString",
+                "orclBegin", "orclEnd"
+        );
+
         if (containingMethod != null) {
             StringBuilder swaggerAnnotation = new StringBuilder();
             swaggerAnnotation.append("@ApiInfo(params = {\n");
@@ -75,8 +81,15 @@ public class GenerateSwaggerParamsAction extends AnAction {
                 } else {
                     PsiClass psiClass = PsiUtil.resolveClassInType(type);
                     if (psiClass != null) {
+
+
                         for (PsiField field : psiClass.getAllFields()) {
                             String fieldName = field.getName();
+
+                            if (excludedFields.contains(fieldName)) {
+                                continue;
+                            }
+
                             String fieldType = field.getType().getPresentableText();
                             String comment = getCleanFieldComment(field);
 
@@ -109,7 +122,7 @@ public class GenerateSwaggerParamsAction extends AnAction {
                     PsiModifierList modifierList = containingMethod.getModifierList();
                     modifierList.addBefore(annotation, modifierList.getFirstChild());
 
-                    Messages.showInfoMessage(project, "Swagger注解已生成并插入到方法上方，\n同时已复制到剪贴板", "成功");
+                    Messages.showInfoMessage(project, "Swagger注解已生成\n并插入到方法上方 且已复制", "成功");
                 } catch (Exception e) {
                     log.error("插入Swagger注解失败", e);
                     Messages.showErrorDialog(project, "插入Swagger注解失败: \n" + e.getMessage(), "错误");

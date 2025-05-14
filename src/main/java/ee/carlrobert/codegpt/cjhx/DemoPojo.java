@@ -5,6 +5,17 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 public class DemoPojo {
+    private String serialVersionUID2;
+    private String serialVersionUID;
+    private String rows;
+    private String currentIndex;
+    private String orderbys;
+    private String orderBy;
+    private String ascOrDesc;
+    private String orderbyString;
+    private String orclBegin;
+    private String orclEnd;
+
     /**
      * ”√ªß–’√˚
      */

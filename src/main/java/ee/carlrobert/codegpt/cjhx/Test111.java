@@ -14,7 +14,7 @@ public class Test111 {
 
     }
 
-    public void test1(DemoSubPojo demoSubPojo,DemoPojo demoPojo){
+    public void test1(DemoSubPojo demoSubPojo, DemoPojo demoPojo){
 
     }
 
